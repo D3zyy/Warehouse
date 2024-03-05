@@ -1,8 +1,8 @@
 import configparser
 
-class Settings():
-    def __init__(self):
-        self.config_file_path = 'config.ini'
+class Settings:
+    def __init__(self,path_to_config_file):
+        self.config_file_path =  path_to_config_file
         self.config = configparser.ConfigParser()
         self.config.read(self.config_file_path)
         self.default_user_username = self.config.get('DefaultUser', 'username')

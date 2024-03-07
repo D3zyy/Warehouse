@@ -32,8 +32,12 @@ class DatabaseConnector:
     def execute_query(self, query, params=None):
         if params is None:
             self.cursor.execute(query)
+            self.connection.commit()
+            print("Uspech bez param")
         else:
             self.cursor.execute(query, params)
+            self.connection.commit()
+            print("uspech s param")
         return self.cursor.fetchall()
 
 

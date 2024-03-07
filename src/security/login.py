@@ -33,6 +33,7 @@ class Login_manager:
         
         query = "INSERT INTO Users (username, password, role_id) VALUES (%s, %s, %s)"  
         connector.execute_query(query, (username, password, role_id))
+        
         print("Konfigurace byla načtena")
 
 

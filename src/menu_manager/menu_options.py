@@ -1,5 +1,5 @@
-from src.config.Initialization import Settings
 import json
+from src.config.Initialization import Settings
 from src.menu_manager.supplier_manager import supplier_manager
 from src.menu_manager.customer_manager  import customer_manager
 from src.menu_manager.sale_manager import sale_manager
@@ -27,7 +27,7 @@ class Options_manager:
         elif role_id == 3:
              self.print_options_employee('menu_manager/options_role_json/options_role_employee.json')
         elif role_id == 4:
-               self.print_options_guest('menu_manager/options_role_json/options_role_manager.json')
+               self.print_options_guest('menu_manager/options_role_json/options_role_guest.json')
       
     def print_options_guest(self,path_to_guest_option_json):
         with open(path_to_guest_option_json) as json_file:
@@ -59,15 +59,15 @@ class Options_manager:
         choice = str(input())
         match choice:
             case "1":
-                supplier_mng.print_supplier_options('menu_manager/options_supplier.json')
+                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
                 choice = str(input())
                 supplier_mng.execute(choice)   
             case "2":
-                customer_mng.print_customer_options('menu_manager/options_customer.json')
+                customer_mng.print_customer_options('menu_manager/options_section_json/options_customer.json')
                 choice = str(input())
                 customer_mng.execute(choice)
             case "3":
-                sale_mng.print_sale_options('menu_manager/options_sale.json')
+                sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
                 choice = str(input()) 
                 sale_mng.execute(choice)
             case "4":

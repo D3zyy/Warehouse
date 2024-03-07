@@ -29,9 +29,13 @@ class DatabaseConnector:
         )
         self.cursor = self.connection.cursor()
 
-    def execute_query(self, query):
-        self.cursor.execute(query)
+    def execute_query(self, query, params=None):
+        if params is None:
+            self.cursor.execute(query)
+        else:
+            self.cursor.execute(query, params)
         return self.cursor.fetchall()
+
 
     def close_connection(self):
         self.cursor.close()

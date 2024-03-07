@@ -7,13 +7,14 @@ class Login_manager:
         self.username = None
         self.password = None
         self.role = None
+        self_role_id = None
         self.loggedIn = False
         
     def login_message(self):
         if self.username != None:
-            print(f"Přihlášen jako :  {self.username} Role : {self.role} \n ")
+            print(f"Uzivatel :  {self.username} Role : {self.role} \n ")
         else:
-            print(f"Přihlášen jako GUEST")
+            print(f"Uzivatel : GUEST \n")
 
     def load_config(self, path_to_config):
         self.config = configparser.ConfigParser()
@@ -23,27 +24,27 @@ class Login_manager:
         role_string = str(self.config.get('DefaultUser','role'))
         
         if role_string == "Admin":
-            role_id = 1
+            self.role_id = 1
         elif role_string == "Manager":
-            role_id = 2
+            self.role_id = 2
         elif role_string == "Employee":
-            role_id = 3
+            self.role_id = 3
         else:  
-            role_id = 4
+            self.role_id = 4
         
         query = "INSERT INTO Users (username, password, role_id) VALUES (%s, %s, %s)"  
-        connector.execute_query(query, (username, password, role_id))
+        connector.execute_query(query, (username, password, self.role_id))
         
-        print("Konfigurace byla načtena")
-
-
+        #print("Konfigurace byla načtena")
+    def get_role(self):
+        return self.role_id
     def isLoggedIn(self):
         return self.loggedIn
     def login(self,username,password):
        if username == self.username and password == self.password:
            self.load_config = True
-           print("Uspěšně jste se přihlásily!")
+           print("Uspesne jste se prihlasili!")
        else:
-            print("Zadané údaje nebyli správné, nebyli jste přihlášeny")
+            print("Zadane udaje nebyli spravne, nebyli jste prihlaseni")
 
     

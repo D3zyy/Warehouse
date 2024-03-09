@@ -44,13 +44,13 @@ class Options_manager:
 
     def select_option(self,role_id,login_mng):
         if role_id == 1:
-            admin_role.select_option_admin(login_mng)
+            admin_role.select_option_admin(login_mng,role_id)
         elif role_id == 2:
-            manager_role.select_option_manager(login_mng)
+            manager_role.select_option_manager(login_mng,role_id)
         elif role_id == 3:
-            employee_role.select_option_employee(login_mng)
+            employee_role.select_option_employee(login_mng,role_id)
         elif role_id == 4:
-            guest_role.select_option_guest(login_mng)
+            guest_role.select_option_guest(login_mng,role_id)
         else:
             non_authorized_role.select_option_non_authorized(login_mng)
         #print(f"funguje : {options}")

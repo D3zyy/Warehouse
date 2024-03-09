@@ -8,12 +8,14 @@ login_mng.load_config('config/config.ini')
 dc = DatabaseConnector('config/config.ini')
 option_manager = Options_manager()
 
-while True:
-    option_manager.welcome_message()
-    login_mng.login_message()
-    option_manager.print_options_by_role(login_mng.get_role())
-    option_manager.select_option(login_mng.get_role(),login_mng)
-    
+try:
+    while True:
+        option_manager.welcome_message()
+        login_mng.login_message()
+        option_manager.print_options_by_role(login_mng.get_role())
+        option_manager.select_option(login_mng.get_role(),login_mng)
+except Exception as e:
+    print(f"Nastala chyba : {e}")
 
 
 

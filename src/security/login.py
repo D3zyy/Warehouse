@@ -22,7 +22,7 @@ class Login_manager:
         username = str(self.config.get('DefaultUser', 'username'))
         password = str(self.config.get('DefaultUser', 'password'))
         role_string = str(self.config.get('DefaultUser','role'))
-        role_id_for_db = 99
+        role_id_for_db = None
         if role_string == "Admin":
             role_id_for_db = 1
         elif role_string == "Manager":

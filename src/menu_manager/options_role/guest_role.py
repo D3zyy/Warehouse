@@ -19,17 +19,17 @@ class Guest_role:
                 choice = str(input())
                 supplier_mng.execute(choice)   
             case "2":
-                customer_mng.print_customer_options('menu_manager/options_section_json/options_customer.json')
-                choice = str(input())
-                customer_mng.execute(choice)
-            case "3":
                 sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
                 choice = str(input()) 
                 sale_mng.execute(choice)
+            case "3":
+                customer_mng.print_customer_options('menu_manager/options_section_json/options_customer.json')
+                choice = str(input())
+                customer_mng.execute(choice)
             case "4":
-                    login_mng.login()
+                    login_mng.log_out()
             case "5":
-                    print(5)
+                    exit()
             case _:
                 print("\nTato volba není dostupná\n")
     def print_options_guest(self,path_to_guest_option_json):

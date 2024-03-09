@@ -40,7 +40,7 @@ class Options_manager:
 
     
     def welcome_message(self):
-        print(f"Vítejte v {settings1.warehouse_name} \n")
+        print(f"{settings1.warehouse_name} \n")
 
     def select_option(self,role_id,login_mng):
         if role_id == 1:

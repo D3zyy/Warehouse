@@ -12,7 +12,8 @@ class Login_manager:
         
     def login_message(self):
         if self.username != None:
-            print(f"Uzivatel : {self.username} role : {self.role} \n ")
+            print(f"Uzivatel : {self.username}   ")
+            print(f"role : {self.role}\n" )
         
 
     def load_config(self, path_to_config):
@@ -30,21 +31,27 @@ class Login_manager:
             role_id_for_db = 3
         else:  
             role_id_for_db = 4
-        print(f"role id z configu : {self.role_id}")
+
         query = "INSERT INTO Users (username, password, role_id) VALUES (%s, %s, %s)"  
-        connector.execute_query(query, (username, password, role_id_for_db))
+        connector.execute_query_with_commit(query, (username, password, role_id_for_db) )
         
         #print("Konfigurace byla načtena")
     def get_role(self):
         return self.role_id
     def isLoggedIn(self):
         return self.loggedIn
+    def log_out(self):
+        self.loggedIn = False
+        self.username = None
+        self.password = None
+        self.role = None
+        self.role_id = None
     def login(self):
         username = input("Zadejte uživatelské jméno: ")
         password = input("Zadejte heslo: ")
         query = "SELECT username, password,role_id FROM Users WHERE username = %s AND password = %s"
         result = connector.execute_query(query, (username, password))
-        print(result)
+        #print(result)
         if result:  # Přihlásit uživatele pokud jsou údaje správné
             #Načtení uživatelské role
             if result[0][2] == 1:
@@ -59,9 +66,9 @@ class Login_manager:
             self.password = password
             self.role_id  = result[0][2]
             self.loggedIn = True
-            print("Úspěšně jste se přihlásili!")
+            print("\nÚspěšně jste se přihlásili!\n")
         else:
-            print("Zadané údaje nebyly správné, nejste přihlášeni.")
+            print("\nZadané údaje nebyly správné, nejste přihlášeni.\n")
         
         
         

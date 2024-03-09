@@ -29,7 +29,11 @@ class Admin_role:
             case "4":
                     login_mng.login()
             case "5":
-                    print(5)
+                    print(5)         
+            case"6":
+                  login_mng.log_out()
+            case"7":
+                  exit()
             case _:
                 print("\nTato volba není dostupná\n")
     def print_options_admin(self,path_to_guest_option_json):

@@ -7,6 +7,7 @@ options = {}
 supplier_mng = supplier_manager()
 customer_mng = customer_manager()
 sale_mng = sale_manager()
+
 class Employee_role:
     def __init__(self):
         pass
@@ -27,13 +28,15 @@ class Employee_role:
                 choice = str(input()) 
                 sale_mng.execute(choice)
             case "4":
-                    login_mng.login()
+                    print(4)
             case "5":
-                    print(5)
+                    login_mng.log_out()
+            case "6":
+                    exit()
             case _:
                 print("\nTato volba není dostupná\n")
-    def print_options_employee(self,path_to_guest_option_json):
-        with open(path_to_guest_option_json) as json_file:
+    def print_options_employee(self,path_to_employee_option_json):
+        with open(path_to_employee_option_json) as json_file:
             options_from_json = json.load(json_file)
             options.update(options_from_json)
             for key, value in options_from_json.items():

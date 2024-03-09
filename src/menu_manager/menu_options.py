@@ -1,8 +1,6 @@
 import json
 from src.config.Initialization import Settings
-from src.menu_manager.supplier_manager import supplier_manager
-from src.menu_manager.customer_manager  import customer_manager
-from src.menu_manager.sale_manager import sale_manager
+
 
 
 from src.menu_manager.options_role.guest_role import Guest_role
@@ -16,9 +14,6 @@ employee_role  = Employee_role()
 manager_role  = Manager_role()
 admin_role = Admin_role()     
 non_authorized_role  = Non_authorized_role()     
-supplier_mng = supplier_manager()
-customer_mng = customer_manager()
-sale_mng = sale_manager()
 
 
 #Cesta uvedena relativně kde je importován menu_options v main.py

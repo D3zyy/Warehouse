@@ -36,7 +36,7 @@ class DatabaseConnector:
             #print("Uspech bez param")
         else:
             self.cursor.execute(query, params)
-            self.connection.commit()
+            #self.connection.commit()
             #print("uspech s param")
         return self.cursor.fetchall()
 

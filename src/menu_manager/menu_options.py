@@ -28,7 +28,14 @@ class Options_manager:
              self.print_options_employee('menu_manager/options_role_json/options_role_employee.json')
         elif role_id == 4:
                self.print_options_guest('menu_manager/options_role_json/options_role_guest.json')
-      
+        else:
+            self.print_options_non_authorized('menu_manager/options_role_json/options_role_non_authorized.json')
+    def print_options_non_authorized(self,path_to_guest_option_json):
+        with open(path_to_guest_option_json) as json_file:
+            options_from_json = json.load(json_file)
+            options.update(options_from_json)
+            for key, value in options_from_json.items():
+                print(f"{key}) {value}")  
     def print_options_guest(self,path_to_guest_option_json):
         with open(path_to_guest_option_json) as json_file:
             options_from_json = json.load(json_file)
@@ -55,7 +62,29 @@ class Options_manager:
                 print(f"{key}) {value}")
     def welcome_message(self):
         print(f"Vítejte v {settings1.warehouse_name} \n")
-    def select_option(self,role):
+    def select_option(self,role_id,login_mng):
+        if role_id == 1:
+            self.select_option_admin(login_mng)
+        elif role_id == 2:
+            self.select_option_manager(login_mng)
+        elif role_id == 3:
+            self.select_option_employee(login_mng)
+        elif role_id == 4:
+            self.select_option_guest(login_mng)
+        else:
+            self.select_option_non_authorized(login_mng)
+        #print(f"funguje : {options}")
+    def select_option_non_authorized(self,login_mng):
+        choice = str(input())
+        match choice:
+            case "1":
+                login_mng.login()
+            case _:
+                print("\nTato volba není dostupná\n")            
+
+
+
+    def select_option_guest(self,login_mng):
         choice = str(input())
         match choice:
             case "1":
@@ -71,12 +100,11 @@ class Options_manager:
                 choice = str(input()) 
                 sale_mng.execute(choice)
             case "4":
-                    print(4)
+                    login_mng.login()
             case "5":
                     print(5)
             case _:
                 print("\nTato volba není dostupná\n")
-        #print(f"funguje : {options}")
 
 
 

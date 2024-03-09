@@ -12,7 +12,7 @@ while True:
     option_manager.welcome_message()
     login_mng.login_message()
     option_manager.print_options_by_role(login_mng.get_role())
-    option_manager.select_option(login_mng.get_role())
+    option_manager.select_option(login_mng.get_role(),login_mng)
     
 
 

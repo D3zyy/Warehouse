@@ -25,7 +25,21 @@ class supplier_manager:
                         result = connector.execute_query_with_commit(query, (name_of_supplier,new_address_id,phone_number)) 
                         print("Uspesne jste vytvorili noveho dodavatele! \n")
                     elif new_address_ == True:
-                        print("novou")
+                        street_name =validate_street()
+                        city_name = validate_city()
+                        postal_code = validate_postal_code()
+                        query = "INSERT INTO  Addresses(street,city,postal_code) VALUES(%s,%s,%s)"
+                        new_address_id = connector.execute_query_with_commit(query, (street_name,city_name,postal_code))
+                        print("\nUspesne jste vytvorili adresu \n")
+                        query = "SELECT COUNT(address_id) FROM Addresses WHERE %s = %s"
+                        addres = connector.execute_query(query, (1, 1))
+                      
+                        phone_number = validate_phone_number()
+                        query = "INSERT INTO  Suppliers(name,address_id,contact_number) VALUES(%s,%s,%s)"
+                        print(addres[0][0])
+                        result = connector.execute_query_with_commit(query, (name_of_supplier,addres[0][0],phone_number)) 
+                        print("Uspesne jste vytvorili noveho dodavatele! \n")
+                        
                         
                     #print("VYTVORENI")
                 else:

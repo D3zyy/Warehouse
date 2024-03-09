@@ -12,9 +12,8 @@ class Login_manager:
         
     def login_message(self):
         if self.username != None:
-            print(f"Uzivatel : {self.username} Role : {self.role} \n ")
-        else:
-            print(f"\n")
+            print(f"Uzivatel : {self.username} role : {self.role} \n ")
+        
 
     def load_config(self, path_to_config):
         self.config = configparser.ConfigParser()
@@ -46,17 +45,16 @@ class Login_manager:
         query = "SELECT username, password,role_id FROM Users WHERE username = %s AND password = %s"
         result = connector.execute_query(query, (username, password))
         print(result)
-
-        #Načtení uživatelské role
-        if result[0][2] == 1:
-            self.role = "Admin"
-        elif result[0][2] == 2:
-            self.role = "Manager"
-        elif result[0][2] == 3:
-            self.role = "Employee"
-        elif result[0][2] == 4:
-            self.role = "Guest"
         if result:  # Přihlásit uživatele pokud jsou údaje správné
+            #Načtení uživatelské role
+            if result[0][2] == 1:
+                self.role = "Admin"
+            elif result[0][2] == 2:
+                self.role = "Manager"
+            elif result[0][2] == 3:
+                self.role = "Employee"
+            elif result[0][2] == 4:
+                self.role = "Guest"
             self.username = username
             self.password = password
             self.role_id  = result[0][2]
@@ -64,6 +62,9 @@ class Login_manager:
             print("Úspěšně jste se přihlásili!")
         else:
             print("Zadané údaje nebyly správné, nejste přihlášeni.")
+        
+        
+        
 
 
     

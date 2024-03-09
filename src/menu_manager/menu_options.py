@@ -79,10 +79,73 @@ class Options_manager:
         match choice:
             case "1":
                 login_mng.login()
+            case "2":
+                 exit()
             case _:
-                print("\nTato volba není dostupná\n")            
-
-
+                print("\nTato volba není dostupná\n")
+    def select_option_admin(self,login_mng):
+        choice = str(input())
+        match choice:
+            case "1":
+                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
+                choice = str(input())
+                supplier_mng.execute(choice)   
+            case "2":
+                customer_mng.print_customer_options('menu_manager/options_section_json/options_customer.json')
+                choice = str(input())
+                customer_mng.execute(choice)
+            case "3":
+                sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
+                choice = str(input()) 
+                sale_mng.execute(choice)
+            case "4":
+                    login_mng.login()
+            case "5":
+                    print(5)
+            case _:
+                print("\nTato volba není dostupná\n")                            
+    def select_option_manager(self,login_mng):
+        choice = str(input())
+        match choice:
+            case "1":
+                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
+                choice = str(input())
+                supplier_mng.execute(choice)   
+            case "2":
+                customer_mng.print_customer_options('menu_manager/options_section_json/options_customer.json')
+                choice = str(input())
+                customer_mng.execute(choice)
+            case "3":
+                sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
+                choice = str(input()) 
+                sale_mng.execute(choice)
+            case "4":
+                    login_mng.login()
+            case "5":
+                    print(5)
+            case _:
+                print("\nTato volba není dostupná\n")
+    def select_option_employee(self,login_mng):
+        choice = str(input())
+        match choice:
+            case "1":
+                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
+                choice = str(input())
+                supplier_mng.execute(choice)   
+            case "2":
+                customer_mng.print_customer_options('menu_manager/options_section_json/options_customer.json')
+                choice = str(input())
+                customer_mng.execute(choice)
+            case "3":
+                sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
+                choice = str(input()) 
+                sale_mng.execute(choice)
+            case "4":
+                    login_mng.login()
+            case "5":
+                    print(5)
+            case _:
+                print("\nTato volba není dostupná\n")
 
     def select_option_guest(self,login_mng):
         choice = str(input())

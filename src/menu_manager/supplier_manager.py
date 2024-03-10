@@ -23,7 +23,7 @@ class supplier_manager:
                     print("Nemate  dostatecne pravomoce provest tento prikaz\n")
             case "3":
                 if role_id != 4:
-                    print("ODSTRANENI")
+                    supp_row.delete()
                 else:
                     print("Nemate  dostatecne pravomoce provest tento prikaz\n")
             case _:

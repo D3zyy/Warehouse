@@ -79,11 +79,15 @@ class SupplierRowGateway(RowGateway):
                 else:
                     print("Toto id neexistuje. Zkuste to znovu.")
     def delete(self):
-        query = "SELECT * FROM Roles"
-        rows = self.database_connector.execute_query(query)
-        self.database_connector.close_connection()
-        print("Role Report:")
-        print("{:<5} {:<20}".format("ID", "Name"))
-        print("-" * 60)
-        for row in rows:
-            print("{:<5} {:<20}".format(row[0], row[1]))
+        while True:
+              #validate id
+                is_id = validate_number("dodavatele")
+                 #check existance of id
+                id_supplier = check_existance_of_id_supplier(is_id,"Suppliers",self.database_connector)
+                if id_supplier == True:
+                    query = "DELETE FROM Suppliers  WHERE supplier_id = %s"
+                    self.database_connector.execute_query_with_commit(query, (is_id,))
+                    print("\nUspense jste smazali  dodavatele!\n")
+                    break 
+                else:
+                    print("Toto id neexistuje. Zkuste to znovu.")

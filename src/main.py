@@ -16,6 +16,11 @@ try:
         option_manager.select_option(login_mng.get_role(),login_mng)
 except Exception as e:
     print(f"Nastala chyba : {e}")
+except ValueError as e:
+    print(e)
+except KeyboardInterrupt as e:
+    print(f"\nProgram ukončen klavesou")
+
 
 
 

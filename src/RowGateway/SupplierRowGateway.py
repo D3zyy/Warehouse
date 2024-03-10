@@ -80,7 +80,7 @@ class SupplierRowGateway(RowGateway):
                     print("Toto id neexistuje. Zkuste to znovu.")
     def delete(self):
         while True:
-              #validate id
+                #validate id
                 is_id = validate_number("dodavatele")
                  #check existance of id
                 id_supplier = check_existance_of_id_supplier(is_id,"Suppliers",self.database_connector)

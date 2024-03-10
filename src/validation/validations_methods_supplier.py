@@ -1,5 +1,8 @@
 import re
 
+
+
+
 def validate_postal_code():
     while True:
         postal_code = input("Zadejte postovni smerovaci cislo (PSC): ")
@@ -38,7 +41,13 @@ def validate_phone_number():
             
         else:
             print("Neplatny format telefonniho cisla. Zkuste to znovu.")
-
+def check_existance_of_id_supplier(id,table,connector):
+       query = f"SELECT supplier_id FROM {table} WHERE supplier_id = %s "
+       result = connector.execute_query(query, (id,))
+       if result:
+             return True
+       else: 
+             return False
 
 def check_existance_of_id(id,table,connector):
        query = f"SELECT address_id FROM {table} WHERE address_id = %s "
@@ -76,5 +85,17 @@ def new_address():
                         return False
                 case "2":
                         return True
+                case _:
+                        print("Tato možnost neni dostupna")
+def choice_atribute():
+     while True:
+            vyber = str(input(" Vyberte atribut který chcete editovat\n  1) jmeno \n  2) id adresy \n  3) telefoni cislo"))
+            match vyber:
+                case "1":
+                        return 1
+                case "2":
+                        return 2
+                case "3":
+                        return 3
                 case _:
                         print("Tato možnost neni dostupna")

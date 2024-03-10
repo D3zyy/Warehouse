@@ -39,13 +39,28 @@ class SupplierRowGateway(RowGateway):
                         print(addres[0][0])
                         result = self.database_connector.execute_query_with_commit(query, (name_of_supplier,addres[0][0],phone_number)) 
                         print("Uspesne jste vytvorili noveho dodavatele! \n")
-    def update(self, username):
-        query = f"SELECT * FROM Roles WHERE name = %s"
-        cursor = self.database_connector.cursor()
-        cursor.execute(query, (username,))
-        row = cursor.fetchone()
-        cursor.close()
-        return row
+    def update(self):
+        while True:
+                is_id = validate_number("dodavatele")
+                print(is_id)
+                id_supplier = check_existance_of_id_supplier(is_id,"Suppliers",self.database_connector)
+                print(id_supplier)
+                if id_supplier == True:
+                        atribute = choice_atribute()
+                        if atribute == 1:
+                              new_name_of_supplier =  validate_name("dodavatele")
+                              print(new_name_of_supplier)
+                              query = "UPDATE Suppliers SET name = %s WHERE supplier_id = %s"
+                              print(f"id upravujici ho ::: {is_id}")
+                              result = self.database_connector.execute_query_with_commit(query, (new_name_of_supplier,is_id))
+                              print("\nUspesne jste upravili dodavatele!\n") 
+                              break
+                        elif atribute == 2:
+                              print("adress id")
+                        elif atribute == 3:
+                              print("telefoni cislo")
+                else:
+                    print("Toto id neexistuje. Zkuste to znovu.")
     def delete(self):
         query = "SELECT * FROM Roles"
         rows = self.database_connector.execute_query(query)

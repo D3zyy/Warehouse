@@ -4,7 +4,7 @@ options_sale = {}
 class sale_manager:
     def __init__(self):
         pass
-    def execute(self,value):
+    def execute(self,value,role_id):
         match value:
             case "1":
                 print("VYTVORENI")

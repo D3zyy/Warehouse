@@ -15,9 +15,7 @@ class Manager_role:
         choice = str(input())
         match choice:
             case "1":
-                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
-                choice = str(input())
-                supplier_mng.execute(choice,role_id)   
+                print("Prijemky")  
             case "2":
                 sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
                 choice = str(input()) 
@@ -27,13 +25,22 @@ class Manager_role:
                 choice = str(input())
                 customer_mng.execute(choice,role_id)
             case "4":
-                    login_mng.login()
+                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
+                choice = str(input())
+                supplier_mng.execute(choice,role_id)
             case "5":
-                    print(5)
+                    print("Sklad sekce soon")
+                    
             case "6":
-                    login_mng.log_out()
+                    print("Muj ucet..")
+                    
             case "7":
-                    exit()
+                    print("Manager sekce soon")
+                    
+            case "8":
+                   login_mng.log_out()
+            case "9":
+                  exit()
             case _:
                 print("\nTato volba není dostupná\n")
     def print_options_manager(self,path_to_guest_option_json):

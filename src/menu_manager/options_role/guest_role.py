@@ -15,9 +15,7 @@ class Guest_role:
         choice = str(input())
         match choice:
             case "1":
-                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
-                choice = str(input())
-                supplier_mng.execute(choice,role_id)   
+                print("Vydejky soon")  
             case "2":
                 sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
                 choice = str(input()) 
@@ -27,9 +25,18 @@ class Guest_role:
                 choice = str(input())
                 customer_mng.execute(choice,role_id)
             case "4":
-                    login_mng.log_out()
+                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
+                choice = str(input())
+                supplier_mng.execute(choice,role_id) 
             case "5":
-                    exit()
+                    print("Sklad sekce soon")
+            case "6":
+                  print("Muj ucet soon")
+                  
+            case "7":
+                  login_mng.log_out()
+            case "8":
+                  exit()
             case _:
                 print("\nTato volba není dostupná\n")
     def print_options_guest(self,path_to_guest_option_json):

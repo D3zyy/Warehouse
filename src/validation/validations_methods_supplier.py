@@ -35,7 +35,7 @@ def validate_phone_number():
     pattern = r'^\+\d{3} \d{3} \d{3} \d{3}$'
     
     while True:
-        phone_number = input("Zadejte telefoni cislo dodavatele ve formatu [+XYZ XXX XXX XXX] : ")
+        phone_number = input("Zadejte telefoni cislo  ve formatu [+XYZ XXX XXX XXX] : ")
         if re.match(pattern, phone_number):
             return phone_number
             
@@ -43,6 +43,13 @@ def validate_phone_number():
             print("Neplatny format telefonniho cisla. Zkuste to znovu.")
 def check_existance_of_id_supplier(id,table,connector):
        query = f"SELECT supplier_id FROM {table} WHERE supplier_id = %s "
+       result = connector.execute_query(query, (id,))
+       if result:
+             return True
+       else: 
+             return False
+def check_existance_of_id_customer(id,table,connector):
+       query = f"SELECT customer_id FROM {table} WHERE customer_id = %s "
        result = connector.execute_query(query, (id,))
        if result:
              return True
@@ -79,7 +86,7 @@ def validate_name(name):
             return username
 def new_address():
      while True:
-            vyber = str(input(" Pridani adresy dodavatele \n 1)  Chcete zadat id jiz existujici adresy \n 2)  vytvorit novou adresu"))
+            vyber = str(input(" Pridani adresy  \n 1)  Chcete zadat id jiz existujici adresy \n 2)  vytvorit novou adresu"))
             match vyber:
                 case "1":
                         return False

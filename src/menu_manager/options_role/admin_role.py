@@ -15,9 +15,7 @@ class Admin_role:
         choice = str(input())
         match choice:
             case "1":
-                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
-                choice = str(input())
-                supplier_mng.execute(choice,role_id)   
+                print("Prijemky soon")   
             case "2":
                 sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
                 choice = str(input()) 
@@ -27,12 +25,18 @@ class Admin_role:
                 choice = str(input())
                 customer_mng.execute(choice,role_id)
             case "4":
-                    login_mng.login()
+                supplier_mng.print_supplier_options('menu_manager/options_section_json/options_supplier.json')
+                choice = str(input())
+                supplier_mng.execute(choice,role_id)
             case "5":
-                    print(5)         
+                    print("Sklad sekce soon")      
             case"6":
-                  login_mng.log_out()
+                  print("admin sekce soon")
             case"7":
+                  print("Muj ucet")
+            case "8":
+                  login_mng.log_out()
+            case "9":
                   exit()
             case _:
                 print("\nTato volba není dostupná\n")

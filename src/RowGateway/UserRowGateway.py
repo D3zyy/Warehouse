@@ -74,7 +74,19 @@ class UserRowGateway(RowGateway):
                             
                     break
                 case "2":
-                    self.change_password(login_mng)
+                    while True:
+                        username = str(input("Zadejte uzivatelske jmeno uzivatele kteremu chcete zmenit heslo  : "))
+                        query = "SELECT username from  Users WHERE username = %s"
+                        result = self.database_connector.execute_query(query, (username,)) 
+                        if result:
+                            new_password = validate_password()
+                            query = "UPDATE Users SET password = %s WHERE username = %s"
+                            self.database_connector.execute_query_with_commit(query, (new_password,username)) 
+                            login_mng.password = new_password
+                            print("\nHeslo bylo uspesne zmeneno\n")
+                            break
+                        else: 
+                            print("Uzivatel s timto jmenem nebyl v systemu nalezen. Zkuste to znovu")                   
                     break
                 case "3":
                     while True:

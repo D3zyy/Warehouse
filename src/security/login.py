@@ -9,6 +9,7 @@ class Login_manager:
         self.role = None
         self.role_id = None
         self.loggedIn = False
+        self.user_id = None
         
     def login_message(self):
         if self.username != None:
@@ -49,7 +50,7 @@ class Login_manager:
     def login(self):
         username = input("Zadejte uživatelské jméno: ")
         password = input("Zadejte heslo: ")
-        query = "SELECT username, password,role_id FROM Users WHERE username = %s AND password = %s"
+        query = "SELECT username, password,role_id,user_id FROM Users WHERE username = %s AND password = %s"
         result = connector.execute_query(query, (username, password))
         #print(result)
         if result:  # Přihlásit uživatele pokud jsou údaje správné
@@ -65,6 +66,7 @@ class Login_manager:
             self.username = username
             self.password = password
             self.role_id  = result[0][2]
+            self.user_id = result[0][3]
             self.loggedIn = True
             print("\nÚspěšně jste se přihlásili!\n")
         else:

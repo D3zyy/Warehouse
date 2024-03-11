@@ -1,12 +1,14 @@
 from src.menu_manager.supplier_manager import supplier_manager
 from src.menu_manager.customer_manager  import customer_manager
 from src.menu_manager.sale_manager import sale_manager
+from src.menu_manager.account_manager import account_manager
 import json
 
 
 supplier_mng = supplier_manager()
 customer_mng = customer_manager()
 sale_mng = sale_manager()
+account_mng = account_manager()
 
 class Admin_role:
     def __init__(self):
@@ -33,7 +35,9 @@ class Admin_role:
             case"6":
                   print("admin sekce soon")
             case"7":
-                  print("Muj ucet")
+                  account_mng.print_account_options('menu_manager/options_section_json/options_account.json')
+                  choice = str(input())
+                  account_mng.execute(choice,login_mng)
             case "8":
                   login_mng.log_out()
             case "9":

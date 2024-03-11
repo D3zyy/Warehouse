@@ -99,7 +99,7 @@ class CustomerRowGateway(RowGateway):
                                     print("Ukon byl stornovan")
                                     break
                           case _:
-                                print("Neplatne zadani ukon byl stornovan")
+                                print("Volba neni platna akce byla stornovana")
                                 break
                     
                     

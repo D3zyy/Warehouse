@@ -37,7 +37,7 @@ class Admin_role:
             case"6":
                   admin_mng.print_manager_options('menu_manager/options_section_json/options_admin.json')
                   choice = str(input())
-                  admin_mng.execute(choice,role_id)
+                  admin_mng.execute(choice,login_mng)
             case"7":
                   account_mng.print_account_options('menu_manager/options_section_json/options_account.json')
                   choice = str(input())

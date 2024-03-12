@@ -17,11 +17,7 @@ class account_manager:
             case "3":
                 user_row.delete_account(login_mng)
             case _:
-                user_row.update(login_mng)
-                
-                #user_row.create()
-                #user_row.delete()
-                #print("\nTato volba není dostupná \n")
+                print("\nTato volba není dostupná \n")
     def print_account_options(self,path_to_account_options):
         with open(path_to_account_options) as json_file:
             options_from_json = json.load(json_file)

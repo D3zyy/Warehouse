@@ -3,16 +3,15 @@ from simple_colors import *
 
 class Printer:
     def print_admin_section(self):
-        print(red('Admin sekce', 'bold'))
+        print(red('Admin sekce'))
     def print_bold_white(self,name):
-        #print(black(f"{name}",'bold'))
-        return black(f"{name}",'bold')
+        return black(f"{name}")
     def print_role(self,role):
         if role == "Admin": 
-            return red(f"{role}",'bold')
+            return red(f"{role}")
         elif role =="Manager":
-            return green(f"{role}",'bold')
+            return green(f"{role}")
         elif role == "Employee":
-            return yellow(f"{role}",'bold')
+            return yellow(f"{role}")
         elif role == "Guest":
-            return black(f"{role}",'bold')
+            return black(f"{role}")

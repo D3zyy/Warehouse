@@ -2,11 +2,12 @@ import json
 from src.config.database_connector import DatabaseConnector
 from src.RowGateway.UserRowGateway import UserRowGateway
 from printer.printer import Printer
+from src.TableGateway.UsersTableGateway import UserTableGateway
 
 _printer = Printer()
 connector =  DatabaseConnector('config/config.ini')
 user_row = UserRowGateway(connector)
-
+user_table = UserTableGateway(connector)
 
 class admin_manager:
     def __init__(self):
@@ -20,7 +21,7 @@ class admin_manager:
             case "3":
                 user_row.delete()
             case "4":
-                print("Zobrazit vsechny uzivatele")
+                user_table.get_all_users()
             case "5":
                 print("Vymazat vsechny data")
             case "6":

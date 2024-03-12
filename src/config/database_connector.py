@@ -29,7 +29,7 @@ class DatabaseConnector:
     def execute_query(self, query, params=None):
         if params is None:
             self.cursor.execute(query)
-            self.connection.commit()
+            #self.connection.commit()
 
         else:
             self.cursor.execute(query, params)

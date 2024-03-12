@@ -19,7 +19,6 @@ class RoleRowGateway(RowGateway):
     def generate_report(self):
         query = "SELECT * FROM Roles"
         rows = self.database_connector.execute_query(query)
-        self.database_connector.close_connection()
         print("Role Report:")
         print("{:<5} {:<20}".format("ID", "Name"))
         print("-" * 60)

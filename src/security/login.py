@@ -1,6 +1,7 @@
 import configparser
 from src.config.database_connector import DatabaseConnector
 from printer.printer import Printer
+import getpass
 
 _printer = Printer()
 connector =  DatabaseConnector('config/config.ini')
@@ -52,7 +53,7 @@ class Login_manager:
         self.role_id = None
     def login(self):
         username = input("Zadejte uživatelské jméno: ")
-        password = input("Zadejte heslo: ")
+        password = getpass.getpass("Zadejte heslo: ")
         query = "SELECT username, password,role_id,user_id FROM Users WHERE username = %s AND password = %s"
         result = connector.execute_query(query, (username, password))
         #print(result)

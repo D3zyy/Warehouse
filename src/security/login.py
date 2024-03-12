@@ -1,5 +1,8 @@
 import configparser
 from src.config.database_connector import DatabaseConnector
+from printer.printer import Printer
+
+_printer = Printer()
 connector =  DatabaseConnector('config/config.ini')
 
 class Login_manager:
@@ -13,8 +16,8 @@ class Login_manager:
         
     def login_message(self):
         if self.username != None:
-            print(f"Uzivatel : {self.username}   ")
-            print(f"role : {self.role}\n" )
+            print(f"Uzivatel : { _printer.print_bold_white(self.username)}")
+            print(f"role : {_printer.print_role(self.role)}\n" )
         
 
     def load_config(self, path_to_config):

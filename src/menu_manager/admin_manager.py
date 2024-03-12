@@ -1,7 +1,7 @@
 import json 
 from src.config.database_connector import DatabaseConnector
 from src.RowGateway.UserRowGateway import UserRowGateway
-from vendor.printer import Printer
+from printer.printer import Printer
 
 _printer = Printer()
 connector =  DatabaseConnector('config/config.ini')

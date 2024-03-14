@@ -3,6 +3,8 @@ from src.config.database_connector import DatabaseConnector
 from src.RowGateway.UserRowGateway import UserRowGateway
 from printer.printer import Printer
 from src.TableGateway.UsersTableGateway import UserTableGateway
+from src.validation.validations_methods_admin import *
+
 
 _printer = Printer()
 connector =  DatabaseConnector('config/config.ini')
@@ -165,7 +167,69 @@ class admin_manager:
                     
                     case _:
                           print("Volba není platná akce byla stornovana")
-            
+            case "8":
+                chose_which_part = input("Vyberte kategorii kterou chcete upravit : \n 1) Databaze \n 2) Zakladni uzivatel  \n 3) Jmeno skladu\n ")
+                match chose_which_part:
+                     case "1":
+                          chose_which_part = input("Vyberte cast kterou chcete upravit : \n 1) host \n 2) uzivatel  \n 3) heslo \n 4) databaze \n ")
+                          match chose_which_part:
+                               case "1":
+                                     print(f"soucasny host : {connector.config.get('Database', 'host')}")
+                                     connector.config['Database']['host'] = validate_domain()
+                                     with open('config/config.ini', 'w') as configfile:
+                                        connector.config.write(configfile)
+                                     print(connector.config.get('Database', 'host'))
+                                    
+                               case "2":
+                                    print(f"soucasny uzivatel : {connector.config.get('Database', 'user')}")
+                                    connector.config['Database']['user'] = validate_username_db()
+                                    with open('config/config.ini', 'w') as configfile:
+                                        connector.config.write(configfile)
+                                    print(connector.config.get('Database', 'host'))
+                               case "3":
+                                    print(f"soucasne heslo : {connector.config.get('Database', 'password')}")
+                                    connector.config['Database']['password'] = input("Zadejte heslo :")
+                                    with open('config/config.ini', 'w') as configfile:
+                                        connector.config.write(configfile)
+                                    print(connector.config.get('Database', 'password'))
+                               case "4":
+                                    print(f"soucasna databaze : {connector.config.get('Database', 'database')}")
+                                    connector.config['Database']['database'] = validate_database_name()
+                                    with open('config/config.ini', 'w') as configfile:
+                                        connector.config.write(configfile)
+                                    print(connector.config.get('Database', 'database'))
+                               case _:
+                                     print("Tato volba není platná ")
+                     case "2":
+                          chose_which_part = input("Vyberte cast kterou chcete upravit : \n 1) jmeno \n 2) heslo  \n 3) role  \n ")
+                          match chose_which_part:
+                               case "1":
+                                    print(f"soucasna uzivatel : {connector.config.get('DefaultUser', 'username')}")
+                                    connector.config['DefaultUser']['username'] = validate_database_name()
+                                    with open('config/config.ini', 'w') as configfile:
+                                        connector.config.write(configfile)
+                               case "2":
+                                    print(f"soucasne heslo : {connector.config.get('DefaultUser', 'password')}")
+                                    connector.config['DefaultUser']['password'] = validate_password()
+                                    with open('config/config.ini', 'w') as configfile:
+                                        connector.config.write(configfile)
+                               case "3":
+                                    print(f"soucasna role : {connector.config.get('DefaultUser', 'role')}")
+                                    connector.config['DefaultUser']['role'] = validate_role()
+                                    with open('config/config.ini', 'w') as configfile:
+                                        connector.config.write(configfile)
+                               case _:
+                                     print("Tato volba není platná  ")
+                     case "3":
+                           print(f"soucasny nazev skladu : {connector.config.get('Warehouse', 'name')}")
+                           connector.config['Warehouse']['name'] = validate_username_db()
+                           with open('config/config.ini', 'w') as configfile:
+                                 connector.config.write(configfile)
+                     case _:
+                          print("Tato volba není platná ")
+
+
+                
             
             case _:
                 print("\nTato volba není dostupná \n")

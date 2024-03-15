@@ -4,6 +4,8 @@ from simple_colors import *
 class Printer:
     def print_admin_section(self):
         print(red('Admin sekce'))
+    def print_manager_section(self):
+        print(green('Manager sekce'))
     def print_bold_white(self,name):
         return black(f"{name}")
     def print_role(self,role):

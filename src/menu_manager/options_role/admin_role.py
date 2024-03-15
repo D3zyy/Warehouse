@@ -35,7 +35,7 @@ class Admin_role:
             case "5":
                     print("Sklad sekce soon")      
             case"6":
-                  admin_mng.print_manager_options('menu_manager/options_section_json/options_admin.json')
+                  admin_mng.print_admin_options('menu_manager/options_section_json/options_admin.json')
                   choice = str(input())
                   admin_mng.execute(choice,login_mng)
             case"7":

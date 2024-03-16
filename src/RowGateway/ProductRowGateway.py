@@ -80,6 +80,12 @@ class ProductRowGateway(RowGateway):
             else:
                     print("Toto id neexistuje. Zkuste to znovu")
     def delete(self):
-        print("delete")
+         id = check_existance_of_product_id(self.database_connector)
+         if id:
+            query = "DELETE FROM Products where product_id = %s "
+            self.database_connector.execute_query_with_commit(query, (id,)) 
+            print("\nUspesne jste smazali  produkt !\n")
+         else:
+             print("Toto id neexistuje. Zkuste to znovu")
 
 

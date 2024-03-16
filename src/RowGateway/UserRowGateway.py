@@ -9,7 +9,7 @@ class UserRowGateway(RowGateway):
         self.password = None
         self.username = None
         self.role_id = None
-    def create(self):
+    def create(self,login_mng):
         while True:
             username =  validate_name()
             query = "SELECT username from  Users WHERE username = %s"
@@ -20,22 +20,38 @@ class UserRowGateway(RowGateway):
             else:
                 password = validate_password()
                 while True:
-                    role = input("Zadejte roli uzivatele [guest,employee,manager,admin]")
-                    match role:
-                        case "guest":
-                            role = 4
-                            break
-                        case "employee":
-                            role = 3
-                            break
-                        case "manager":
-                            role = 2
-                            break
-                        case"admin":
-                            role = 1
-                            break
-                        case _:
-                            print("Tato role není dostupná. Zkuste to znovu")
+                    if login_mng.role == "Admin":
+                        role = input("Zadejte roli uzivatele [guest,employee,manager,admin]")
+                        match role:
+                            case "guest":
+                                role = 4
+                                break
+                            case "employee":
+                                role = 3
+                                break
+                            case "manager":
+                                role = 2
+                                break
+                            case"admin":
+                                role = 1
+                                break
+                            case _:
+                                print("Tato role není dostupná. Zkuste to znovu")
+                    elif login_mng.role =="Manager":
+                        role = input("Zadejte roli uzivatele [guest,employee,manager]")
+                        match role:
+                            case "guest":
+                                role = 4
+                                break
+                            case "employee":
+                                role = 3
+                                break
+                            case "manager":
+                                role = 2
+                                break
+                            case _:
+                                print("Tato role není dostupná. Zkuste to znovu")
+                    
                 query = "INSERT INTO Users(username,password,role_id)  VALUES(%s,%s,%s)"
                 self.database_connector.execute_query_with_commit(query, (username,password,role)) 
                 print("\nUspesne jste vytvorili noveho uzivatele!\n")
@@ -48,6 +64,20 @@ class UserRowGateway(RowGateway):
                 case "1":
                     while True:
                         username = str(input("Zadejte uzivatelske jmeno uzivatele kteremu chcete zmenit uzivatelske jmeno : "))
+                        #Check role
+                        query_role = "SELECT Roles.name FROM Users INNER JOIN Roles ON Users.role_id = Roles.role_id WHERE Users.username= %s;"
+                        result = self.database_connector.execute_query(query_role, (username,))
+                        if result:
+                            role_of_editing_user = result[0][0]
+                            if login_mng.role == role_of_editing_user:
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            elif login_mng.role == "Manager" and role_of_editing_user == "Guest" or role_of_editing_user == "Employee":
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            elif login_mng.role == "Admin" and role_of_editing_user == "Manager" or role_of_editing_user == "Employee" or role_of_editing_user == "Guest":
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            else:
+                                print("Nemáte opravneni editovat tohoto uzivatele")
+                                break
                         query = "SELECT username from  Users WHERE username = %s"
                         result = self.database_connector.execute_query(query, (username,)) 
                         if result:
@@ -76,6 +106,22 @@ class UserRowGateway(RowGateway):
                 case "2":
                     while True:
                         username = str(input("Zadejte uzivatelske jmeno uzivatele kteremu chcete zmenit heslo  : "))
+                        #Check role
+                        query_role = "SELECT Roles.name FROM Users INNER JOIN Roles ON Users.role_id = Roles.role_id WHERE Users.username= %s;"
+                        result = self.database_connector.execute_query(query_role, (username,))
+                        if result:
+                            role_of_editing_user = result[0][0]
+                            if login_mng.role == role_of_editing_user:
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            elif login_mng.role == "Manager" and role_of_editing_user == "Guest" or role_of_editing_user == "Employee":
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            elif login_mng.role == "Admin" and role_of_editing_user == "Manager" or role_of_editing_user == "Employee" or role_of_editing_user == "Guest":
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            else:
+                                print("Nemáte opravneni editovat tohoto uzivatele")
+                                break
+
+
                         query = "SELECT username from  Users WHERE username = %s"
                         result = self.database_connector.execute_query(query, (username,)) 
                         if result:
@@ -91,6 +137,23 @@ class UserRowGateway(RowGateway):
                 case "3":
                     while True:
                         username_of_account  = str(input("Zadejte uzivatelske jmeno uctu ktery chcete upravit : "))
+                        #Check role
+                        query_role = "SELECT Roles.name FROM Users INNER JOIN Roles ON Users.role_id = Roles.role_id WHERE Users.username= %s;"
+                        result = self.database_connector.execute_query(query_role, (username_of_account,))
+                        if result:
+                            role_of_editing_user = result[0][0]
+                            if login_mng.role == role_of_editing_user:
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            elif login_mng.role == "Manager" and role_of_editing_user == "Guest" or role_of_editing_user == "Employee":
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            elif login_mng.role == "Admin" and role_of_editing_user == "Manager" or role_of_editing_user == "Employee" or role_of_editing_user == "Guest":
+                                print("Mate povoleni editovat tohoto uzivatele")
+                            else:
+                                print("Nemáte opravneni editovat tohoto uzivatele")
+                                break
+
+                            
+                        #Check existance
                         query = "SELECT username from  Users WHERE username = %s"
                         result = self.database_connector.execute_query(query, (username_of_account,)) 
                         if result:
@@ -114,7 +177,7 @@ class UserRowGateway(RowGateway):
                             query = "UPDATE Users SET role_id = %s where username = %s "
                             #print(f"username uzivatele  : {username_of_account} menime na roli {role}")
                             self.database_connector.execute_query_with_commit(query, (role,username_of_account)) 
-                            print("\nRole byla uspensa zmenena\n")
+                            print("\nRole byla uspesne zmenena\n")
                             break                             
 
                         else:
@@ -124,9 +187,24 @@ class UserRowGateway(RowGateway):
                         
                         
 
-    def delete(self):
+    def delete(self,login_mng):
         while True:
             username = str(input("Zadejte uzivatelske jmeno uzivatele ktereho chcete smazat : "))
+            query_role = "SELECT Roles.name FROM Users INNER JOIN Roles ON Users.role_id = Roles.role_id WHERE Users.username= %s;"
+            result = self.database_connector.execute_query(query_role, (username,))
+            if result:
+                    role_of_editing_user = result[0][0]
+                    if login_mng.role == role_of_editing_user:
+                         print("Mate povoleni smazat tohoto uzivatele")
+                    elif login_mng.role == "Manager" and role_of_editing_user == "Guest" or role_of_editing_user == "Employee":
+                          print("Mate povoleni smazat tohoto uzivatele")
+                    elif login_mng.role == "Admin" and role_of_editing_user == "Manager" or role_of_editing_user == "Employee" or role_of_editing_user == "Guest":
+                          print("Mate povoleni smazat tohoto uzivatele")
+                    else:
+                          print("Nemáte opravneni smazat tohoto uzivatele")
+                          break
+
+
             query = "SELECT username from  Users WHERE username = %s"
             result = self.database_connector.execute_query(query, (username,)) 
             if result:

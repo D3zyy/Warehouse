@@ -17,11 +17,11 @@ class admin_manager:
     def execute(self,value,login_mng):
         match value:
             case "1":
-                user_row.create()
+                user_row.create(login_mng)
             case "2":
                 user_row.update(login_mng)
             case "3":
-                user_row.delete()
+                user_row.delete(login_mng)
             case "4":
                 user_table.get_all_users()
             case "5":

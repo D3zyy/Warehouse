@@ -11,6 +11,7 @@ def validate_category_name():
         else:
             return username
 def check_existance_of_category_name(name,connector):
+       
        query = f"SELECT name FROM Categories WHERE name = %s "
        result = connector.execute_query(query, (name,))
        if result:

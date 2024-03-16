@@ -9,6 +9,7 @@ product_row = ProductRowGateway(connector)
 category_row = CategoryRowGateway(connector)
 
 
+
 class warehouse_manager:
     def __init__(self):
         pass
@@ -18,10 +19,12 @@ class warehouse_manager:
                 choice = input(" 1) pridat produkt\n 2) editovat produkt \n 3) smazat produkt \n 4) zobrazit vsechny produkty na sklade \n")
                 match choice:
                     case "1":
-                        print("Pridat")
+                        product_row.create()
                     case "2":
+                        product_row.edit()
                         print("Editovat")
                     case "3":
+                        product_row.delete()
                         print("smazat")
                     case "4":
                         print("Zobrazit vsechny produkty na sklade")

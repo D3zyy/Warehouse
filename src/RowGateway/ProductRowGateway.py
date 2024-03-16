@@ -33,7 +33,52 @@ class ProductRowGateway(RowGateway):
             else:
                 print("Tato kategorie neexistuje. Zkuste to znovu")
     def edit(self):
-        print("edit")
+        while True:
+            id = check_existance_of_product_id(self.database_connector)
+            if id:
+                
+
+
+                choice = input("Vyberte co chcete upravit : \n 1) jmeno produktu \n 2) cenu produktu \n 3) mnozstvi produktu \n 4) kategorii \n")
+                match choice:
+                    case "1":
+                        new_name_of_the_product = validate_product_name()
+                        query = "UPDATE Products SET name = %s where product_id = %s "
+                        self.name = new_name_of_the_product
+                        self.database_connector.execute_query_with_commit(query, (self.name,id)) 
+                        print("\nUspesne jste upravili jmeno  produktu !\n")
+                        break
+                    case "2":
+                        new_price = validate_price()
+                        query = "UPDATE Products SET price = %s where product_id = %s "
+                        self.price = new_price
+                        self.database_connector.execute_query_with_commit(query, (self.price,id)) 
+                        print("\nUspesne jste upravili cenu produktu !\n")
+                        break
+                    case "3":
+                        new_quantity = validate_quantity()
+                        query = "UPDATE Products SET quantity = %s where product_id = %s "
+                        self.quantity = new_quantity
+                        self.database_connector.execute_query_with_commit(query, (self.quantity,id)) 
+                        print("\nUspesne jste upravili mnozstvi produktu na sklade !\n")
+                        break
+                    case "4":
+                        while True:
+                            category_name = input("Zadejte nove jmeno kategorie produktu : ")
+                            exists = check_existance_of_category_name(category_name,self.database_connector)
+                            if exists:
+                                category_id = get_category_id(category_name,self.database_connector)
+                                self.category_id = category_id
+                                query = "UPDATE Products SET category_id = %s where product_id = %s "
+                                print(f"produkt id = {id} \n kategorie id = {self.category_id}")
+                                self.database_connector.execute_query_with_commit(query, (self.category_id,id)) 
+                                print("\nUspesne jste upravili kategorii produktu !\n")
+                                break
+                            else:
+                                print("Tato kategorie neexistuje. Zkuste to znovu")
+                        break
+            else:
+                    print("Toto id neexistuje. Zkuste to znovu")
     def delete(self):
         print("delete")
 

@@ -22,7 +22,6 @@ def get_category_id(name,connector):
        query = f"SELECT category_id FROM Categories WHERE name = %s "
        result = connector.execute_query(query, (name,))
        if result:
-             print(f"id kategorie : {result[0][0]}")
              return result[0][0]
        else: 
              return False

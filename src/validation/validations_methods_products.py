@@ -34,3 +34,15 @@ def validate_quantity():
                 print("Množství musí být kladné celé číslo. Zkuste to znovu.")
         except ValueError:
             print("Zadejte platné celé číslo.")
+def check_existance_of_product_id(connector):
+    while True:
+        id = input("Zadejte ID produktu, který chcete upravit: ")
+        if id.isdigit() and int(id) > 0:
+            query = "SELECT product_id FROM Products WHERE product_id = %s"
+            result = connector.execute_query(query, (id,))
+            if result:
+                return id
+            else:
+                return False
+        else:
+            print("Zadejte kladné číslo. Zkuste to znovu.")

@@ -3,6 +3,7 @@ from src.menu_manager.customer_manager  import customer_manager
 from src.menu_manager.sale_manager import sale_manager
 from src.menu_manager.account_manager import account_manager
 from src.menu_manager.admin_manager import admin_manager
+from src.menu_manager.warehouse_manager import warehouse_manager
 import json
 
 
@@ -11,6 +12,7 @@ customer_mng = customer_manager()
 sale_mng = sale_manager()
 account_mng = account_manager()
 admin_mng = admin_manager()
+warehouse_mng = warehouse_manager()
 
 class Admin_role:
     def __init__(self):
@@ -33,7 +35,9 @@ class Admin_role:
                 choice = str(input())
                 supplier_mng.execute(choice,role_id)
             case "5":
-                    print("Sklad sekce soon")      
+                warehouse_mng.print_warehouse_options('menu_manager/options_section_json/options_warehouse.json')
+                choice = str(input())
+                warehouse_mng.execute(choice,role_id)
             case"6":
                   admin_mng.print_admin_options('menu_manager/options_section_json/options_admin.json')
                   choice = str(input())

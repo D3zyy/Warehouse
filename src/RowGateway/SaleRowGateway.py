@@ -27,7 +27,7 @@ class SaleRowGateway(RowGateway):
                 is_id = validate_number("zakaznika")
                 #check existance of id
                 id_customer = check_existance_of_id_customer(is_id,"Customers",self.database_connector)
-     
+            
                 if id_customer == True:
                         query = "SELECT price FROM Products WHERE name = %s "
                         price_of_the_product = self.database_connector.execute_query(query, (name_of_the_product,)) 

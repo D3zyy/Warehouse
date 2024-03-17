@@ -2,13 +2,14 @@ import json
 from src.RowGateway.CategoryRowGateway import CategoryRowGateway
 from src.RowGateway.ProductRowGateway import ProductRowGateway
 from src.config.database_connector import DatabaseConnector
-
+from src.TableGateway.ProductsTableGateway import ProductTableGateway
+from src.TableGateway.CategoriesTableGateway import CategoryTableGateway
 
 connector =  DatabaseConnector('config/config.ini')
 product_row = ProductRowGateway(connector)
 category_row = CategoryRowGateway(connector)
-
-
+product_table = ProductTableGateway(connector)
+category_table = CategoryTableGateway(connector)
 
 class warehouse_manager:
     def __init__(self):
@@ -22,16 +23,14 @@ class warehouse_manager:
                         product_row.create()
                     case "2":
                         product_row.edit()
-                        print("Editovat")
                     case "3":
                         product_row.delete()
-                        print("smazat")
                     case "4":
-                        print("Zobrazit vsechny produkty na sklade")
+                        product_table.get_all_products()
                     case _:
                          print("\nTato volba není dostupná \n")
             case "2":
-                choice = input(" 1) pridat kategorii\n 2) editovat kategorii \n 3) smazat kategorii \n")
+                choice = input(" 1) pridat kategorii\n 2) editovat kategorii \n 3) smazat kategorii \n 4) zobrazit vsechny kategorie")
                 match choice:
                     case "1":
                         category_row.create()
@@ -39,6 +38,8 @@ class warehouse_manager:
                         category_row.edit()
                     case "3":
                         category_row.delete()
+                    case "4":
+                        category_table.get_all_categories()
                     case _:
                          print("\nTato volba není dostupná \n")
                 

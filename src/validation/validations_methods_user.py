@@ -19,4 +19,21 @@ def validate_password():
         else:
             return password
 
-    
+
+def check_existance_of_user(connector):
+    while True:
+        name = input("Zadejte jmeno uzivatele : ")
+        if len(name) < 3:
+            print("Jmeno musi obsahovat aspon 3 znaky Zkuste to znovu.")
+        elif name.isdigit():
+            print("Jmeno nemuze byt cislo. Zkuste to znovu.")
+        else:
+            query = "SELECT username FROM Users WHERE username = %s"
+            result = connector.execute_query(query, (name,))
+            if result:  
+                return name
+            else:
+                print("Uzivatel nebyl nalezen. Zkuste to znovu.")
+
+
+            

@@ -3,7 +3,7 @@ from src.config.database_connector import DatabaseConnector
 from printer.printer import Printer
 from src.RowGateway.UserRowGateway import UserRowGateway
 from src.TableGateway.UsersTableGateway import UserTableGateway
-
+from src.validation.validations_methods_manager import *
 
 _printer = Printer()
 connector =  DatabaseConnector('config/config.ini')
@@ -22,9 +22,9 @@ class manager_manager:
             case "3":
                 user_row.delete(login_mng)
             case "4":
-                user_table.get_all_users()
-            case "5":
-                print
+                user_table.get_specific_user(login_mng)
+            case _:
+                print("Tato volba neni dostupna")
     def print_manager_options(self,path_to_manager_options):
         _printer.print_manager_section()
         with open(path_to_manager_options) as json_file:

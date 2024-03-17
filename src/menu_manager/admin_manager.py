@@ -234,7 +234,8 @@ class admin_manager:
 
 
                 
-            
+            case "9":
+                  user_table.get_specific_user(login_mng)
             case _:
                 print("\nTato volba není dostupná \n")
     def print_admin_options(self,path_to_manager_options):

@@ -15,7 +15,7 @@ class SaleRowGateway(RowGateway):
         quantity = validate_quantity()   
         query = "SELECT quantity FROM Products WHERE name = %s "
         quantity_in_stock= self.database_connector.execute_query(query, (name_of_the_product,)) 
-        print(f"zadane mnozstvi : {quantity}\n na sklade : {quantity_in_stock[0][0]}")
+        print(f"zadane mnozstvi : {quantity}")
         if quantity <= quantity_in_stock[0][0]:
             print("\nMate dostatek mnozstvi produktu na sklade\n")
             enough_product_in_stock = True

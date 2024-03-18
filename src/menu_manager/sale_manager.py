@@ -1,9 +1,11 @@
 import json 
 from src.RowGateway.SaleRowGateway import SaleRowGateway
+from src.TableGateway.SalesTableGateway import SaleTableGateway
 from src.config.database_connector import DatabaseConnector
 
 connector =  DatabaseConnector('config/config.ini')
 sale_row = SaleRowGateway(connector)
+sale_table = SaleTableGateway(connector)
 
 class sale_manager:
     def __init__(self):
@@ -17,7 +19,7 @@ class sale_manager:
             case "3":
                 sale_row.delete()
             case "4":
-                print("Zobrazit vsechny objednavky")
+                sale_table.get_all_sales()
             case "5":
                 print("Zobrazit specifickou objednavku")
             case _:

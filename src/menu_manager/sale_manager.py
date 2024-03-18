@@ -13,9 +13,9 @@ class sale_manager:
             case "1":
                 sale_row.create()
             case "2":
-                print("EDITACE")
+                sale_row.edit()
             case "3":
-                print("ODSTRANENI")
+                sale_row.delete()
             case "4":
                 print("Zobrazit vsechny objednavky")
             case "5":

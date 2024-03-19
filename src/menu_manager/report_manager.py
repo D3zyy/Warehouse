@@ -7,6 +7,10 @@ from src.TableGateway.RolesTableGateway import RoleTableGateway
 from src.TableGateway.ProductsTableGateway import ProductTableGateway
 from src.TableGateway.CategoriesTableGateway import CategoryTableGateway
 from src.TableGateway.AddressesTableGateway import AddressesTableGateway
+from src.TableGateway.CustomerTableGateway import CustomerTableGateway
+from src.TableGateway.SupplierTableGateway import SupplierTableGateway
+from src.TableGateway.PurchaseTableGateway import PurchaseTableGateway
+from src.TableGateway.SalesTableGateway import SaleTableGateway
 
 connector =  DatabaseConnector('config/config.ini')
 sale_row = SaleRowGateway(connector)
@@ -16,6 +20,11 @@ role_table = RoleTableGateway(connector)
 product_table = ProductTableGateway(connector)
 category_table = CategoryTableGateway(connector)
 address_table = AddressesTableGateway(connector)
+customer_table = CustomerTableGateway(connector)
+supplier_table = SupplierTableGateway(connector)
+purchase_table = PurchaseTableGateway(connector)
+sale_table = SaleTableGateway(connector)
+
 
 class report_manager:
     def __init__(self):
@@ -94,28 +103,48 @@ class report_manager:
                             print("Tato volba neni dostupna")
                 else:
                     print("Pristup odepren")
-                print("Adresy")
             case "6":
                 if role_id == 1 or role_id == 2:
-                    print
+                    choice = input(" 1) Vypsat vsechny zakazniky \n")
+                    match choice:
+                        case "1":
+                            customer_table.get_all_customers()
+                        case _:
+                            print("Tato volba neni dostupna")
                 else:
                     print("Pristup odepren")
-                print("Zakaznici")
             case "7":
                 if role_id == 1 or role_id == 2:
-                    print
+                    choice = input(" 1) Vypsat vsechny dodavatele \n")
+                    match choice:
+                        case "1":
+                            supplier_table.get_all_suppliers()
+                        case _:
+                            print("Tato volba neni dostupna")
                 else:
                     print("Pristup odepren")
-                print("Dodavatele")
             case "8":
                 if role_id == 1 or role_id == 2:
-                    print
+                    choice = input(" 1) Vypsat vsechny prijemky \n 2) Vypsat specifickou prijemku")
+                    match choice:
+                        case "1":
+                            purchase_table.get_all_purchases()
+                        case "2":
+                            purchase_table.get_specific_purchase()
+                        case _:
+                            print("Tato volba neni dostupna")
                 else:
                     print("Pristup odepren")
-                print("Prijemky")
             case "9":
                 if role_id == 1 or role_id == 2:
-                    print
+                    choice = input(" 1) Vypsat vsechny vydejky \n 2) Vypsat specifickou vydejku")
+                    match choice:
+                        case "1":
+                            sale_table.get_all_sales()
+                        case "2":
+                            sale_table.get_specific_sale()
+                        case _:
+                            print("Tato volba neni dostupna")
                 else:
                     print("Pristup odepren")
                 print("Vydejky")

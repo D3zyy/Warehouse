@@ -2,6 +2,8 @@ from src.menu_manager.supplier_manager import supplier_manager
 from src.menu_manager.customer_manager  import customer_manager
 from src.menu_manager.sale_manager import sale_manager
 from src.menu_manager.account_manager import account_manager
+from src.menu_manager.purchases_manager import purchase_manager
+from src.menu_manager.warehouse_manager import warehouse_manager
 import json
 
 
@@ -9,6 +11,8 @@ supplier_mng = supplier_manager()
 customer_mng = customer_manager()
 sale_mng = sale_manager()
 account_mng = account_manager()
+purchase_mng = purchase_manager()
+warehouse_mng = warehouse_manager()
 
 class Employee_role:
     def __init__(self):
@@ -17,7 +21,9 @@ class Employee_role:
         choice = str(input())
         match choice:
             case "1":
-                   print("vydejky soon")
+                purchase_mng.print_purchase_options('menu_manager/options_section_json/options_purchase.json')
+                choice = str(input()) 
+                purchase_mng.execute(choice,role_id)
             case "2":
                 sale_mng.print_sale_options('menu_manager/options_section_json/options_sale.json')
                 choice = str(input()) 
@@ -31,15 +37,19 @@ class Employee_role:
                 choice = str(input())
                 supplier_mng.execute(choice,role_id)
             case "5":
-                    print("sklad sekce soon")
+                warehouse_mng.print_warehouse_options('menu_manager/options_section_json/options_warehouse.json')
+                choice = str(input())
+                warehouse_mng.execute(choice,role_id)
             case "6":
+                  print("generovat reporty")
+            case "7":
                   account_mng.print_account_options('menu_manager/options_section_json/options_account.json')
                   choice = str(input())
                   account_mng.execute(choice,login_mng)
-            case "7":
-                  login_mng.log_out()
             case "8":
-                  exit()
+                  login_mng.log_out()
+            case "9":
+                exit()
             case _:
                 print("\nTato volba není dostupná\n")
     def print_options_employee(self,path_to_employee_option_json):

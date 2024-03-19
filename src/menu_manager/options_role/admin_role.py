@@ -47,13 +47,15 @@ class Admin_role:
                   choice = str(input())
                   admin_mng.execute(choice,login_mng)
             case"7":
+                  print("generovat reporty")
+            case "8":
                   account_mng.print_account_options('menu_manager/options_section_json/options_account.json')
                   choice = str(input())
                   account_mng.execute(choice,login_mng)
-            case "8":
-                  login_mng.log_out()
             case "9":
-                  exit()
+               login_mng.log_out()
+            case "10":
+                exit()
             case _:
                 print("\nTato volba není dostupná\n")
     def print_options_admin(self,path_to_guest_option_json):

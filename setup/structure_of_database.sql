@@ -41,7 +41,7 @@ CREATE TABLE Purchases (
     supplier_id INT,
     quantity INT NOT NULL CHECK (quantity >= 0),
     price DECIMAL(10,2) NOT NULL CHECK (price > 0),
-    date DATE NOT NULL,
+    date DATE NOT NULL DEFAULT (CURRENT_DATE),
     FOREIGN KEY (product_id) REFERENCES Products(product_id),
     FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
 );

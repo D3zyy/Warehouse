@@ -68,22 +68,20 @@ class PurchaseRowGateway(RowGateway):
                     amount = input("Zadejte nove mnozstvi v objednavce : ")
                     if amount.isdigit():
                         #check enough at stock
-                        query = "SELECT Products.quantity,Sales.quantity,Products.product_id FROM Sales inner join Products on  Products.product_id = Sales.product_id WHERE Sales.sale_id = %s "
-                        amount_at_stock = self.database_connector.execute_query(query, (sale_id,))
-                        #print(f"pocet produktu na sklade : {amount_at_stock[0][0]}")
-                        #print(f"puvodni mnozstvi v objednavce : {amount_at_stock[0][1]}")
-                        if amount_at_stock[0][0] + amount_at_stock[0][1] >= int(amount):
+                        query = "SELECT Products.quantity,Purchases.quantity,Products.product_id FROM Purchases inner join Products on  Products.product_id = Purchases.product_id WHERE Purchases.purchase_id = %s "
+                        amount_at_stock = self.database_connector.execute_query(query, (purchase_id,))
+                        print(f"pocet produktu na sklade : {amount_at_stock[0][0]}")
+                        print(f"puvodni mnozstvi v dodavce : {amount_at_stock[0][1]}")
+                        
 
-                            query = "UPDATE Sales SET quantity = %s WHERE sale_id  = %s "
-                            self.database_connector.execute_query_with_commit(query, (amount,sale_id))
-                            print(f"Novy pocet produktu na sklade : {amount_at_stock[0][0] + amount_at_stock[0][1] - int(amount)}")
-                            query = "UPDATE Products SET quantity = %s WHERE product_id  = %s "
-                            self.database_connector.execute_query_with_commit(query, (amount_at_stock[0][0] + amount_at_stock[0][1] - int(amount),amount_at_stock[0][2])) 
-                            print("\nUspesne jste upravili mnozstvi produktu v  objednavky!\n")
-                            break
-                        else:
-                            print("\nNemate dostatek produktu na sklade\n")
-                            break
+                        query = "UPDATE Purchases SET quantity = %s WHERE purchase_id  = %s "
+                        self.database_connector.execute_query_with_commit(query, (amount,purchase_id))
+                        print(f"Novy pocet produktu na sklade : {amount_at_stock[0][0] + int(amount) -  amount_at_stock[0][1]   }")
+                        query = "UPDATE Products SET quantity = %s WHERE product_id  = %s "
+                        self.database_connector.execute_query_with_commit(query, (amount_at_stock[0][0] + int(amount) -  amount_at_stock[0][1] ,amount_at_stock[0][2])) 
+                        print("\nUspesne jste upravili mnozstvi produktu v  objednavky!\n")
+                        break
+                       
                     else:
                         print("Zadejte kladne cislo. Zkuste to znova. ")
 

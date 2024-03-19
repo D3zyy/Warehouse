@@ -19,9 +19,9 @@ class purchase_manager:
             case "3":
                 purchase_row.delete()
             case "4":
-                purchase_table.get_all_sales()
+                purchase_table.get_all_purchases()
             case "5":
-                purchase_table.get_specific_sale()
+                purchase_table.get_specific_purchase()
             case _:
                 print("\nTato volba není dostupná \n")
     def print_purchase_options(self,path_to_purchase_options):

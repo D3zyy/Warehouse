@@ -40,3 +40,43 @@ class UserTableGateway(TableGateway):
                 for row in rows:
                     print("{:<5} {:<20} {:<20} {:<5}".format(row[0], row[1] ,row[2], row[3]))
                 print("\n")
+    def get_all_guest_users(self):
+        print("\n")
+        query = "SELECT Users.user_id,Users.username,Users.password,Roles.name FROM Users inner join Roles on Roles.role_id = Users.role_id where Roles.name = 'Guest'"
+        rows = self.database_connector.execute_query(query)
+        print("Uzivatele systemu:")
+        print("{:<5} {:<20} {:<20} {:<5}".format("ID", "Uzivatelske jmeno","heslo","Role"))
+        print("-" * 60)
+        for row in rows:
+            print("{:<5} {:<20} {:<20} {:<5}".format(row[0], row[1] ,row[2], row[3]))
+        print("\n")
+    def get_all_employee_users(self):
+        print("\n")
+        query = "SELECT Users.user_id,Users.username,Users.password,Roles.name FROM Users inner join Roles on Roles.role_id = Users.role_id where Roles.name = 'Employee'"
+        rows = self.database_connector.execute_query(query)
+        print("Uzivatele systemu:")
+        print("{:<5} {:<20} {:<20} {:<5}".format("ID", "Uzivatelske jmeno","heslo","Role"))
+        print("-" * 60)
+        for row in rows:
+            print("{:<5} {:<20} {:<20} {:<5}".format(row[0], row[1] ,row[2], row[3]))
+        print("\n")
+    def get_all_manager_users(self):
+        print("\n")
+        query = "SELECT Users.user_id,Users.username,Users.password,Roles.name FROM Users inner join Roles on Roles.role_id = Users.role_id where Roles.name = 'Manager'"
+        rows = self.database_connector.execute_query(query)
+        print("Uzivatele systemu:")
+        print("{:<5} {:<20} {:<20} {:<5}".format("ID", "Uzivatelske jmeno","heslo","Role"))
+        print("-" * 60)
+        for row in rows:
+            print("{:<5} {:<20} {:<20} {:<5}".format(row[0], row[1] ,row[2], row[3]))
+        print("\n")
+    def get_all_admin_users(self):
+        print("\n")
+        query = "SELECT Users.user_id,Users.username,Users.password,Roles.name FROM Users inner join Roles on Roles.role_id = Users.role_id where Roles.name = 'Admin'"
+        rows = self.database_connector.execute_query(query)
+        print("Uzivatele systemu:")
+        print("{:<5} {:<20} {:<20} {:<5}".format("ID", "Uzivatelske jmeno","heslo","Role"))
+        print("-" * 60)
+        for row in rows:
+            print("{:<5} {:<20} {:<20} {:<5}".format(row[0], row[1] ,row[2], row[3]))
+        print("\n")

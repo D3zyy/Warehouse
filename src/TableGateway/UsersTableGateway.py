@@ -1,6 +1,6 @@
 from src.TableGateway.TableGateway_polymorphism.TableGateway  import TableGateway 
 from src.validation.validations_methods_user import *
-from src.validation.validations_methods_manager import *
+
 
 class UserTableGateway(TableGateway):
     def __init__(self,database_connector):

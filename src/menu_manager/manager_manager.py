@@ -3,7 +3,7 @@ from src.config.database_connector import DatabaseConnector
 from printer.printer import Printer
 from src.RowGateway.UserRowGateway import UserRowGateway
 from src.TableGateway.UsersTableGateway import UserTableGateway
-from src.validation.validations_methods_manager import *
+
 
 _printer = Printer()
 connector =  DatabaseConnector('config/config.ini')

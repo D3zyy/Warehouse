@@ -21,7 +21,7 @@ class sale_manager:
             case "4":
                 sale_table.get_all_sales()
             case "5":
-                print("Zobrazit specifickou objednavku")
+                sale_table.get_specific_sale()
             case _:
                 print("\nTato volba není dostupná \n")
     def print_sale_options(self,path_to_sale_options):

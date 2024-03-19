@@ -28,7 +28,7 @@ class admin_manager:
                     confirmation = input(" Jste si jisty ze chcete smazat vsechny data ze systemu pro potvrzeni napiste : smazat \n Pro storno napise : storno\n")
                     match confirmation:
                         case "smazat":
-                            tables_to_delete = ["Purchases", "Sales", "Products", "Categories", "Users", "Suppliers", "Customers", "Roles","Addresses"]
+                            tables_to_delete = ["Purchases", "Sales", "Products", "Categories", "Users", "Suppliers", "Customers","Addresses"]
                             
                             for table in tables_to_delete:
                                 query = f"DELETE FROM {table}"
@@ -66,8 +66,8 @@ class admin_manager:
                             "DROP TABLE IF EXISTS Customers;",
                             "DROP TABLE IF EXISTS Addresses;",
                             "DROP TABLE IF EXISTS Categories;",
-                            "DROP TABLE IF EXISTS Users;",
-                            "DROP TABLE IF EXISTS Roles;"
+                            "DROP TABLE IF EXISTS Users;"
+                            
                         ]
 
                         for drop_query in drop_table_queries:
@@ -135,17 +135,12 @@ class admin_manager:
                                 customer_id INT,
                                 quantity INT NOT NULL CHECK (quantity >= 0),
                                 price DECIMAL(10,2) NOT NULL CHECK (price > 0),
-                                date DATE NOT NULL DEFAULT CURDATE(),
+                                date DATE NOT NULL DEFAULT (CURRENT_DATE),
                                 FOREIGN KEY (product_id) REFERENCES Products(product_id),
                                 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
                             )
                             """,
-                            """
-                            CREATE TABLE Roles (
-                                role_id INT AUTO_INCREMENT PRIMARY KEY,
-                                name VARCHAR(50) NOT NULL
-                            )
-                            """,
+                            
                             """
                             CREATE TABLE Users (
                                 user_id INT AUTO_INCREMENT PRIMARY KEY,

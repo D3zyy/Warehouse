@@ -1,6 +1,6 @@
 import configparser
 from src.config.database_connector import DatabaseConnector
-from printer.printer import Printer
+from src.printer.printer import Printer
 import getpass
 
 _printer = Printer()

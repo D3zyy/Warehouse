@@ -20,26 +20,51 @@ class warehouse_manager:
                 choice = input(" 1) pridat produkt\n 2) editovat produkt \n 3) smazat produkt \n 4) zobrazit vsechny produkty na sklade \n")
                 match choice:
                     case "1":
-                        product_row.create()
+                        print(role_id)
+                        if role_id != 4 and role_id !=3:
+                            product_row.create()
+                        else:
+                            print("Pristup zamitnut")
                     case "2":
-                        product_row.edit()
+                        if role_id != 4 and role_id !=3:
+                            product_row.edit()
+                        else:
+                            print("Pristup zamitnut")
                     case "3":
-                        product_row.delete()
+                        if role_id != 4 and role_id !=3:
+                            product_row.delete()
+                        else:
+                            print("Pristup zamitnut")
                     case "4":
-                        product_table.get_all_products()
+                        if role_id != 4 and role_id !=3:
+                            product_table.get_all_products()
+                        else:
+                            print("Pristup zamitnut")
                     case _:
                          print("\nTato volba není dostupná \n")
             case "2":
                 choice = input(" 1) pridat kategorii\n 2) editovat kategorii \n 3) smazat kategorii \n 4) zobrazit vsechny kategorie")
                 match choice:
                     case "1":
-                        category_row.create()
+                        if role_id != 4 and role_id !=3:
+                            category_row.create()
+                        else:
+                            print("Pristup zamitnut")
                     case "2":
-                        category_row.edit()
+                        if role_id != 4 and role_id !=3:
+                            category_row.edit()
+                        else:
+                            print("Pristup zamitnut")
                     case "3":
-                        category_row.delete()
+                        if role_id != 4 and role_id !=3:
+                         category_row.delete()
+                        else:
+                            print("Pristup zamitnut")
                     case "4":
-                        category_table.get_all_categories()
+                        if role_id != 4 and role_id !=3:
+                            category_table.get_all_categories()
+                        else:
+                            print("Pristup zamitnut")
                     case _:
                          print("\nTato volba není dostupná \n")
                 

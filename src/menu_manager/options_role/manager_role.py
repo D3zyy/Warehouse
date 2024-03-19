@@ -5,6 +5,7 @@ from src.menu_manager.account_manager import account_manager
 from src.menu_manager.manager_manager import manager_manager
 from src.menu_manager.purchases_manager import purchase_manager
 from src.menu_manager.warehouse_manager import warehouse_manager
+from src.menu_manager.report_manager import report_manager
 import json
 
 
@@ -15,6 +16,7 @@ account_mng = account_manager()
 mng_manager = manager_manager()
 warehouse_mng = warehouse_manager()
 purchase_mng = purchase_manager()
+report_mng = report_manager()
 
 class Manager_role:
     def __init__(self):
@@ -52,7 +54,9 @@ class Manager_role:
                     mng_manager.execute(choice,login_mng)
                     
             case "8":
-                   print("Generovat reporty")
+                  report_mng.print_report_options('menu_manager/options_section_json/options_report.json')
+                  choice = str(input())
+                  report_mng.execute(choice,role_id)
             case "9":
                   login_mng.log_out()
             case "10":

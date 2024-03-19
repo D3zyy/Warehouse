@@ -13,15 +13,30 @@ class sale_manager:
     def execute(self,value,role_id):
         match value:
             case "1":
-                sale_row.create()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    sale_row.create()
+                else:
+                    print("Pristup zamitnut")
             case "2":
-                sale_row.edit()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    sale_row.edit()
+                else:
+                    print("Pristup zamitnut")
             case "3":
-                sale_row.delete()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    sale_row.delete()
+                else:
+                    print("Pristup zamitnut")
             case "4":
-                sale_table.get_all_sales()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    sale_table.get_all_sales()
+                else:
+                    print("Pristup zamitnut")
             case "5":
-                sale_table.get_specific_sale()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    sale_table.get_specific_sale()
+                else:
+                    print("Pristup zamitnut")
             case _:
                 print("\nTato volba není dostupná \n")
     def print_sale_options(self,path_to_sale_options):

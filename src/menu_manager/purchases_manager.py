@@ -13,15 +13,30 @@ class purchase_manager:
     def execute(self,value,role_id):
         match value:
             case "1":
-                purchase_row.create()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    purchase_row.create()
+                else:
+                    print("Pristup zamitnut")
             case "2":
-                purchase_row.edit()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    purchase_row.edit()
+                else:
+                    print("Pristup zamitnut")
             case "3":
-                purchase_row.delete()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    purchase_row.delete()
+                else:
+                    print("Pristup zamitnut")
             case "4":
-                purchase_table.get_all_purchases()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    purchase_table.get_all_purchases()
+                else:
+                    print("Pristup zamitnut")
             case "5":
-                purchase_table.get_specific_purchase()
+                if role_id == 1 or role_id == 2 or role_id == 3:
+                    purchase_table.get_specific_purchase()
+                else:
+                    print("Pristup zamitnut")
             case _:
                 print("\nTato volba není dostupná \n")
     def print_purchase_options(self,path_to_purchase_options):

@@ -4,6 +4,7 @@ from config.Initialization import Settings
 import configparser
 import unittest
 
+
 class Tester(unittest.TestCase):
 
     def test_isLoggedIn_by_default(self):

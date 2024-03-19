@@ -37,8 +37,13 @@ class Login_manager:
         else:  
             role_id_for_db = 4
 
-        query = "INSERT INTO Users (username, password, role_id) VALUES (%s, %s, %s)"  
-        connector.execute_query_with_commit(query, (username, password, role_id_for_db) )
+        exist_query = "SELECT COUNT(*) FROM Users WHERE username = %s"
+        result = connector.execute_query(exist_query, (username,))
+        #If default user already in system
+        if result[0][0] == 0:
+            query = "INSERT INTO Users (username, password, role_id) VALUES (%s, %s, %s)"
+            connector.execute_query_with_commit(query, (username, password, role_id_for_db))
+
         
         #print("Konfigurace byla načtena")
     def get_role(self):

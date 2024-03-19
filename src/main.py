@@ -1,5 +1,4 @@
 from src.config.database_connector import DatabaseConnector 
-from src.RowGateway.RoleRowGateway import RoleRowGateway 
 from src.menu_manager.menu_options import *
 from src.security.login import Login_manager
 

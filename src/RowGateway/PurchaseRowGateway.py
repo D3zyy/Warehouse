@@ -104,13 +104,13 @@ class PurchaseRowGateway(RowGateway):
                 print("\nTato volba není dostupná \n")
     def delete(self):
         while True:
-            id_sale = input("Zadejte id objednavky kterou chcete smazat")
-            id_sale_exist = check_existance_of_sale_id(self.database_connector,id_sale)
-            if id_sale_exist:
-                query = "DELETE FROM Sales WHERE sale_id  = %s "
-                self.database_connector.execute_query_with_commit(query, (id_sale,))
-                print("\nUspesne jste smazali objednavku ze systemu\n")
+            id_purchase = input("Zadejte id dodavky kterou chcete smazat")
+            id_purchase_exist = check_existance_of_purchase_id(self.database_connector,id_purchase)
+            if id_purchase_exist:
+                query = "DELETE FROM Purchases WHERE purchase_id  = %s "
+                self.database_connector.execute_query_with_commit(query, (id_purchase,))
+                print("\nUspesne jste smazali dodavku ze systemu\n")
                 break
             else:
-                print("Toto id objednavky neexistuje!")
+                print("Toto id dodavky neexistuje!")
 

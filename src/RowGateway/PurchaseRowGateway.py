@@ -87,18 +87,18 @@ class PurchaseRowGateway(RowGateway):
 
             case "4":
                 while True:
-                    new_price_of_sale = input("Zadejte novou cenu objednavky : ")
+                    new_price_of_sale = input("Zadejte novou cenu dodavky : ")
                     if new_price_of_sale.isdigit():
-                        query = "UPDATE Sales SET price = %s WHERE sale_id  = %s "
-                        self.database_connector.execute_query_with_commit(query, (new_price_of_sale,sale_id))
-                        print("\nUspesne jste upravili cenu objednavkly\n")
+                        query = "UPDATE Purchases SET price = %s WHERE purchase_id  = %s "
+                        self.database_connector.execute_query_with_commit(query, (new_price_of_sale,purchase_id))
+                        print("\nUspesne jste upravili cenu dodavky\n")
                         break
                     else:
                         print("Cena musi byt cislo. Zkuste to znovu")
             case "5":
                 new_date = validate_date()
-                query = "UPDATE Sales SET date = %s WHERE sale_id  = %s "
-                self.database_connector.execute_query_with_commit(query, (new_date,sale_id))
+                query = "UPDATE Purchases SET date = %s WHERE purchase_id  = %s "
+                self.database_connector.execute_query_with_commit(query, (new_date,purchase_id))
                 print("\nUspesne jste upravili datum objednavkly\n")
             case _:
                 print("\nTato volba není dostupná \n")

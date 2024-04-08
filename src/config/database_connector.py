@@ -22,7 +22,8 @@ class DatabaseConnector:
             host=self.config.get('Database', 'host'),
             user=self.config.get('Database', 'user'),
             password=self.config.get('Database', 'password'),
-            database=self.config.get('Database', 'database')
+            database=self.config.get('Database', 'database'),
+            port = self.config.get('Database', 'port')
         )
         self.cursor = self.connection.cursor()
 

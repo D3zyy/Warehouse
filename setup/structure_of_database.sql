@@ -12,6 +12,12 @@ CREATE TABLE Products (
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
 
+CREATE TABLE Addresses (
+    address_id INT AUTO_INCREMENT PRIMARY KEY,
+    street VARCHAR(255) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL
+);
 CREATE TABLE Suppliers (
     supplier_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -28,12 +34,7 @@ CREATE TABLE Customers (
     FOREIGN KEY (address_id) REFERENCES Addresses(address_id)
 );
 
-CREATE TABLE Addresses (
-    address_id INT AUTO_INCREMENT PRIMARY KEY,
-    street VARCHAR(255) NOT NULL,
-    city VARCHAR(100) NOT NULL,
-    postal_code VARCHAR(20) NOT NULL
-);
+
 
 CREATE TABLE Purchases (
     purchase_id INT AUTO_INCREMENT PRIMARY KEY,

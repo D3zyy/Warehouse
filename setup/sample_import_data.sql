@@ -27,11 +27,11 @@ INSERT INTO Addresses (street, city, postal_code) VALUES
 
 -- Produkty
 INSERT INTO Products (name, category_id, price, quantity) VALUES
-('Televize Samsung 50" 4K', 1, 9999.99, 10),
-('Dámský kabát zimní', 2, 1299.50, 20),
-('Kávovar Philips HD8827/09', 3, 1499.00, 15),
-('Mikrovlnná trouba Bosch', 4, 899.99, 12),
-('Posilovací lavice York', 5, 399.99, 8);
+('Televize Samsung 50" 4K', 1, 9999, 10),
+('Dámský kabát zimní', 2, 1299, 20),
+('Kávovar Philips HD8827/09', 3, 1499, 15),
+('Mikrovlnná trouba Bosch', 4, 899, 12),
+('Posilovací lavice York', 5, 399, 8);
 
 -- Dodavatelé
 INSERT INTO Suppliers (name, address_id, contact_number) VALUES
@@ -53,19 +53,19 @@ INSERT INTO Customers (name, address_id, contact_number) VALUES
 
 -- Nákupy
 INSERT INTO Purchases (product_id, supplier_id, quantity, price, date) VALUES
-(1, 1, 5, 8999.99, '2024-03-01'),
-(2, 2, 10, 1200.50, '2024-03-02'),
-(3, 3, 8, 1399.00, '2024-03-03'),
-(4, 4, 6, 850.99, '2024-03-04'),
-(5, 5, 3, 349.99, '2024-03-05');
+(1, 1, 5, 8999, '2024-03-01'),
+(2, 2, 10, 1200, '2024-03-02'),
+(3, 3, 8, 1399, '2024-03-03'),
+(4, 4, 6, 850, '2024-03-04'),
+(5, 5, 3, 349, '2024-03-05');
 
 -- Prodeje
 INSERT INTO Sales (product_id, customer_id, quantity, price, date) VALUES
-(1, 1, 1, 9999.99, '2024-03-01'),
-(2, 2, 2, 1299.50, '2024-03-02'),
-(3, 3, 1, 1499.00, '2024-03-03'),
-(4, 4, 2, 899.99, '2024-03-04'),
-(5, 5, 1, 399.99, '2024-03-05');
+(1, 1, 1, 9999, '2024-03-01'),
+(2, 2, 2, 1299, '2024-03-02'),
+(3, 3, 1, 1499, '2024-03-03'),
+(4, 4, 2, 899, '2024-03-04'),
+(5, 5, 1, 399, '2024-03-05');
 
 -- Role
 INSERT INTO Roles (name) VALUES
